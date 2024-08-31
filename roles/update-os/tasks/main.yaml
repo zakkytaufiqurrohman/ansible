@@ -1,0 +1,8 @@
+- name: update linux os Debian family
+  become: true
+  shell: apt update
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: update linux os Redhat family
+  shell: yum update
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'

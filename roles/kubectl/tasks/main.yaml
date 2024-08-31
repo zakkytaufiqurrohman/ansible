@@ -1,0 +1,16 @@
+# Download the stable release version number of kubectl
+- name: Get the latest stable kubectl version
+  shell: curl -L -s https://dl.k8s.io/release/stable.txt
+  register: kubectl_version
+
+# Download the kubectl binary
+- name: Download kubectl binary
+  get_url:
+    url: "https://dl.k8s.io/release/{{ kubectl_version.stdout }}/bin/linux/amd64/kubectl"
+    dest: /usr/local/bin/kubectl
+    mode: '0755'
+  when: kubectl_version.stdout is defined
+
+# Verify kubectl installation
+- name: Verify kubectl installation
+  command: kubectl version --client

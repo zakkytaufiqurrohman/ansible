@@ -1,0 +1,6 @@
+- name : install docker
+  hosts : tools
+  become : yes
+  roles: 
+    - roles/update-os
+    - roles/docker

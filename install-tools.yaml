@@ -1,0 +1,29 @@
+- name: update dependencies
+  hosts: all
+  become: yes
+  tasks:
+    # Install dependencies
+    - name: Install necessary dependencies
+      apt:
+        name: 
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - gnupg
+          - lsb-release
+          - unzip
+        state: present
+        update_cache: yes
+- name : install tools
+  hosts : tools
+  become: yes
+  roles :
+    - roles/update-os
+    - roles/docker
+    - roles/jenkins
+    - roles/aws_cli
+    - roles/helm
+    - roles/terraform
+    # - roles/k9s
+    - roles/kubectl

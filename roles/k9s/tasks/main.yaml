@@ -1,0 +1,4 @@
+# Install K9s
+- name: Download the latest K9s release
+  snap:
+    name: k9s
